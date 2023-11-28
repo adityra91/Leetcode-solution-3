@@ -1,0 +1,17 @@
+class Solution:
+    def numberOfWays(self, corridor: str) -> int:
+        s = corridor.count('S')
+        if s < 2 or s % 2 != 0:
+            return 0
+        s = 0
+        last_s = 0
+        res = 1
+        MOD = 10**9 + 7
+        for i in range(len(corridor)):
+            if corridor[i] == 'S':
+                s += 1
+                if s % 2 == 0:
+                    last_seat = i
+                elif s > 1:
+                    res *= (i -last_seat)
+        return res % MOD
